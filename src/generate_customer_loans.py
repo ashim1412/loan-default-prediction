@@ -9,7 +9,7 @@ BASE_PATH = Path('./data/raw')
 BASE_PATH.mkdir(parents=True, exist_ok=True)
 
 N_CUSTOMERS = 5000
-TODAY = datetime(2023,1,1)
+TODAY = datetime(2025,1,1)
 
 print("="*80)
 print("STEP 1/2: Generating Customer Profile Data")
@@ -85,12 +85,14 @@ def generate_loans(df_customers):
         "loan_type": loan_types,
     })
 
-    output_path = BASE_PATH / "loan_master.parquet"
+    output_path = BASE_PATH / 'loan_master.parquet'
     df_loans.to_parquet(output_path, index=False)
+
+    return df_loans
 
 if __name__ == "__main__":
     print("\n")
-    print("🚀 LOAN DEFAULT PREDICTION - DATA GENERATION")
+    print("LOAN DEFAULT PREDICTION - DATA GENERATION")
     print("Customer Profile + Loan Master")
     print()
 
@@ -98,6 +100,6 @@ if __name__ == "__main__":
     generate_loans(df_cust)
 
     print("=" * 80)
-    print("✅ SUCCESS! Data generated successfully")
+    print("SUCCESS! Data generated successfully")
     print("=" * 80)
     print()
